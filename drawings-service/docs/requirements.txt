@@ -1,0 +1,24 @@
+Imagine a software platform where users can submit interpretations of abstract drawings.  For example, let's say we had
+one drawing that consisted of a vertical triangle with a rectangle below it. Two users submit the interpretation
+"rocketship" while three others submit “pencil”.
+
+Consider the following:
+- Each user has a username
+- Each drawing has a description and an image_url
+- Each interpretation has text
+
+A drawing can have several interpretation submissions, where each submission consists of one user and one interpretation
+A drawing should be able to print out the list of its own submissions grouped by interpretation. When it does this, it
+should list the usernames together and print something like: “mike and john”, or “mike, john, and maria”, or “abigail
+and 3 others” depending on the number of users who’ve submitted the same interpretation. The focus should be on OO
+design decisions and how you derive business rules from plain english requirements so superb UI is not a crucial
+element. If you have time to improve the user experience, however, feel free to do so.
+
+
+--------------
+
+Concerns:
+- Who will be inputting data? Direct user or through an intermediary?
+- How to address an interpretation of "rocketship" vs. "rocket ship"
+    - Dropdown or free text?
+    - Spell check before submission?
