@@ -23,6 +23,7 @@ import { DashboardSidebarComponent } from './components/dashboard/sidebar/dashbo
 import { DashboardHomeComponent } from './components/dashboard/home/dashboard-home.component';
 import { ListDrawingsComponent } from './components/drawings/list/list-drawings.component';
 import {DrawingService} from './services/drawing/drawing.service';
+import { DrawingComponent } from './components/drawings/drawing.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {DrawingService} from './services/drawing/drawing.service';
     ProfileComponent,
     DashboardSidebarComponent,
     DashboardHomeComponent,
-    ListDrawingsComponent
+    ListDrawingsComponent,
+    DrawingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <img [src]="drawing?.image_url"/>
+    </div>
+    <div class="col-md-8">
+      <h4>Submit an interpretation</h4>
+      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+        <div class="form-group">
+          <label for="text">Text</label>
+          <input type="text" class="form-control" id="text"
+                 required
+                 [(ngModel)]="interpretation.text" name="text"
+                 #name="ngModel">
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!interpretation.text">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

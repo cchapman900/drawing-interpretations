@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Drawing } from '../../models/drawing';
+import {Interpretation} from '../../models/interpretation';
 
 @Injectable()
 export class DrawingService {
@@ -21,7 +22,7 @@ export class DrawingService {
       );
   }
 
-  getDrawing (drawing_id: string): Observable<Drawing> {
+  getDrawing (drawing_id: string|number): Observable<Drawing> {
     return this.http.get<Drawing>(this.drawingsUrl + '/' + drawing_id);
   }
 
@@ -35,6 +36,14 @@ export class DrawingService {
 
   deleteDrawing (drawing_id: string): Observable<Drawing> {
     return this.http.delete<Drawing>(this.drawingsUrl + '/' + drawing_id);
+  }
+
+  createInterpretation (interpretation: Interpretation): Observable<Drawing> {
+    return this.http.post(this.drawingsUrl + '/' + interpretation.drawing_id + '/interpretations', interpretation)
+      .pipe(
+        tap(_ => console.log('Create interpretation')),
+        catchError(this.handleError<any>('updateDrawing', []))
+      );
   }
 
   /**

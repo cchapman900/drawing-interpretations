@@ -10,10 +10,12 @@ import { CallbackComponent } from './components/auth/callback/callback.component
 
 import {AuthGuardService as AuthGuard} from './services/auth/auth-guard.service';
 import {ListDrawingsComponent} from './components/drawings/list/list-drawings.component';
+import {DrawingComponent} from './components/drawings/drawing.component';
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent},
   { path: 'drawings', component: ListDrawingsComponent },
+  { path: 'drawings/:drawing_id', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'callback', component: CallbackComponent },
