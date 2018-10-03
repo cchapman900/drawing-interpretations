@@ -1,15 +1,17 @@
 from flask.ext.mysql import MySQL
 
 from app import APP
+from config import config
 
 mysql = MySQL()
 
 # MySQL configurations
-APP.config['MYSQL_DATABASE_USER'] = 'root'
-APP.config['MYSQL_DATABASE_PASSWORD'] = 'root'
-APP.config['MYSQL_DATABASE_DB'] = 'drawings'
-APP.config['MYSQL_DATABASE_HOST'] = 'localhost'
-APP.config['MYSQL_DATABASE_PORT'] = 8889
+APP.config['MYSQL_DATABASE_USER'] = config['MYSQL_DATABASE_USER']
+APP.config['MYSQL_DATABASE_PASSWORD'] = config['MYSQL_DATABASE_PASSWORD']
+APP.config['MYSQL_DATABASE_DB'] = config['MYSQL_DATABASE_DB']
+APP.config['MYSQL_DATABASE_HOST'] = config['MYSQL_DATABASE_HOST']
+APP.config['MYSQL_DATABASE_PORT'] = config['MYSQL_DATABASE_PORT']
+
 mysql.init_app(APP)
 
 conn = mysql.connect()
