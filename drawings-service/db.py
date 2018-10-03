@@ -1,0 +1,96 @@
+from flask.ext.mysql import MySQL
+
+from app import APP
+
+mysql = MySQL()
+
+# MySQL configurations
+APP.config['MYSQL_DATABASE_USER'] = 'root'
+APP.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+APP.config['MYSQL_DATABASE_DB'] = 'drawings'
+APP.config['MYSQL_DATABASE_HOST'] = 'localhost'
+APP.config['MYSQL_DATABASE_PORT'] = 8889
+mysql.init_app(APP)
+
+conn = mysql.connect()
+
+cursor = conn.cursor()
+
+
+def get_drawings():
+    try:
+        query = """
+            SELECT id, image_url, description 
+            FROM drawing"""
+        cursor.execute(query)
+        drawings = cursor.fetchall()
+        response = []
+        for drawing in drawings:
+            response.append({
+                'id': drawing[0],
+                'image_url': drawing[1],
+                'description': drawing[2]
+            })
+        return response
+    except Exception, e:
+        print e
+
+
+def get_drawing(drawing_id):
+    try:
+        drawing_query = """
+            SELECT id, image_url, description 
+            FROM drawing 
+            WHERE id = %s"""
+        cursor.execute(drawing_query, drawing_id)
+        response = cursor.fetchone()
+
+        drawing = {
+            'id': response[0],
+            'image_url': response[1],
+            'description': response[2]
+        }
+
+        interpretations = get_interpretations(drawing_id)
+        drawing['interpretations'] = interpretations
+
+        return drawing
+
+    except Exception, e:
+        print e
+
+
+def get_interpretations(drawing_id):
+    try:
+        query = """
+            SELECT i.id, user_id, u.username, text 
+            FROM interpretation as i
+            JOIN user as u 
+            ON i.user_id = u.id
+            WHERE drawing_id = %s"""
+        cursor.execute(query, drawing_id)
+        interpretations = cursor.fetchall()
+        response = []
+        for interpretation in interpretations:
+            response.append({
+                'id': interpretation[0],
+                'user_id': interpretation[1],
+                'username': interpretation[2],
+                'text': interpretation[3]
+            })
+        return response
+    except Exception, e:
+        print e
+
+
+def create_interpretation(drawing_id, user_id, text):
+    try:
+        query = """
+            INSERT INTO interpretation (user_id, drawing_id, text)
+            VALUES
+                (%s, %s, %s)"""
+        affected_rows = cursor.execute(query, (user_id, drawing_id, text))
+        conn.commit()
+        return "Successfully updated {} rows".format(affected_rows)
+    except Exception, e:
+        raise e

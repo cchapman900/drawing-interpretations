@@ -13,7 +13,7 @@ paths:
   /drawings:
     get:
       summary: List all drawings
-      operationId: listDrawings
+      operationId: list_drawings
       tags:
         - drawing
       parameters:
@@ -142,6 +142,10 @@ components:
         description:
           type: string
           example: vertical triangle with a rectangle below
+        interpretations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Interpretations"
     Drawings:
       type: array
       items:
