@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+{"virtualbox":{"/opt/services/drawings-service":{"guestpath":"/opt/services/drawings-service","hostpath":"/Users/chris/Developer/drawings/drawings-service","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/chris/Developer/drawings/vagrant","disabled":false,"__vagrantfile":true}}}
+=======
+{"virtualbox":{"/var/www":{"mount_options":["dmode=777","fmode=666","uid=1000","gid=1000"],"guestpath":"/var/www","hostpath":"/Development/drawing-interpretations","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Development/drawing-interpretations/vagrant","disabled":false,"__vagrantfile":true}}}
+>>>>>>> 66e84ccc61fd721a5d3b9e6edaaee686a585b3d2
