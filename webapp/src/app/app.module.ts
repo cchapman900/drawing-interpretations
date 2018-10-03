@@ -21,6 +21,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/dashboard/profile/profile.component';
 import { DashboardSidebarComponent } from './components/dashboard/sidebar/dashboard-sidebar.component';
 import { DashboardHomeComponent } from './components/dashboard/home/dashboard-home.component';
+import { ListDrawingsComponent } from './components/drawings/list/list-drawings.component';
+import {DrawingService} from './services/drawing/drawing.service';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { DashboardHomeComponent } from './components/dashboard/home/dashboard-ho
     DashboardComponent,
     ProfileComponent,
     DashboardSidebarComponent,
-    DashboardHomeComponent
+    DashboardHomeComponent,
+    ListDrawingsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,11 @@ import { DashboardHomeComponent } from './components/dashboard/home/dashboard-ho
     AppRoutingModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [
+    AuthService,
+    AuthGuard,
+    DrawingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

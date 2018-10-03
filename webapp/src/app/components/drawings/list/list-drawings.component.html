@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card" *ngFor="let drawing of drawings">
+        <img class="card-img-top" src="{{drawing.image_url}}"/>
+        <div class="card-body">
+          <h5 class="card-title">{{drawing.description}}</h5>
+          <a routerLink="drawings/{{drawing.id}}" class="btn btn-primary">Submit an interpretation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
