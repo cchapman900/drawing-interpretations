@@ -1,0 +1,278 @@
+{
+	"info": {
+		"_postman_id": "5bbe947c-d08c-4ec6-bc2f-033e7fe71d07",
+		"name": "Drawings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Interpretation",
+			"item": [
+				{
+					"name": "Create Interpretation (success)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dd9217c5-6568-430e-ad81-bf6350f0ea8d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 1,\n  \"drawing_id\": 1,\n  \"text\": \"Rocketship\"\n}"
+						},
+						"url": {
+							"raw": "{{domain}}/drawings/1/interpretations",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"drawings",
+								"1",
+								"interpretations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Interpretation (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "504bc647-c2d4-4571-9a64-89c5dba2c1b9",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 1,\n  \"drawing_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{domain}}/drawings/1/interpretations",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"drawings",
+								"1",
+								"interpretations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Interpretation (409)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "31bd5877-1931-4896-85c4-ca4355646d2d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 1,\n  \"drawing_id\": 1,\n  \"text\": \"Rocketship\"\n}"
+						},
+						"url": {
+							"raw": "{{domain}}/drawings/1/interpretations",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"drawings",
+								"1",
+								"interpretations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Drawing",
+			"item": [
+				{
+					"name": "Get Drawing (success)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c50e32b2-0aff-431a-aab6-153817adb521",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{domain}}/drawings/1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"drawings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Drawing (404)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4bbcd9d5-0933-4265-980a-2188f88cddca",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{domain}}/drawings/100",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"drawings",
+								"100"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List Drawings",
+			"item": [
+				{
+					"name": "List Drawings (success)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2def8110-4d01-4421-956e-fabd44c7a6ab",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{domain}}/drawings",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"drawings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "452b3034-5b67-4a04-9c57-e2a4cd704552",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "05271202-e0cd-4bc1-9f57-46975f4ac045",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8e2a31f5-461e-43c8-9f1e-3f1010d5386f",
+			"key": "domain",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}
