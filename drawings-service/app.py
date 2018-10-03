@@ -1,10 +1,11 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 import json
+import db
 
 APP = Flask(__name__)
-
-import db
+CORS(APP)
 
 
 @APP.route('/drawings', methods=['GET'])

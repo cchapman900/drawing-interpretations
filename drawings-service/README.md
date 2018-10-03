@@ -13,6 +13,7 @@ This service enables users to view drawings and submit interpretations
 ```
 virtualenv venv
 source venv
+pip install -r requirements.txt
 ```
 
 ## Running the service

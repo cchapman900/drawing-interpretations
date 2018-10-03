@@ -1,4 +1,4 @@
-from flask.ext.mysql import MySQL
+from flaskext.mysql import MySQL
 
 from app import APP
 from config import config
@@ -34,6 +34,7 @@ def get_drawings():
                 'description': drawing[2]
             })
         return response
+
     except Exception, e:
         print e
 
@@ -81,6 +82,7 @@ def get_interpretations(drawing_id):
                 'text': interpretation[3]
             })
         return response
+
     except Exception, e:
         print e
 
@@ -94,5 +96,6 @@ def create_interpretation(drawing_id, user_id, text):
         affected_rows = cursor.execute(query, (user_id, drawing_id, text))
         conn.commit()
         return "Successfully updated {} rows".format(affected_rows)
+
     except Exception, e:
         raise e
