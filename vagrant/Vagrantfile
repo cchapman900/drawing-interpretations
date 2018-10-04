@@ -43,7 +43,8 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "../", "/var/www", :mount_options => ["dmode=777", "fmode=666"]
+  config.vm.synced_folder "../webapp/dist", "/var/www", :mount_options => ["dmode=777", "fmode=666"]
+  config.vm.synced_folder "../", "/opt/services", :mount_options => ["dmode=777", "fmode=666"]
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -66,9 +67,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
     sudo apt-get install -y python-pip python-virtualenv libmysqlclient-dev
-    cd /var/www/drawings-service/ && virtualenv venv && source venv/bin/activate
+    cd /opt/services/drawings-service/ && virtualenv venv && source venv/bin/activate
     pip install -r requirements.txt
-    mysql -u root --password="root" < /var/www/drawings-service/db/import.sql
+    mysql -u root --password="root" < /opt/services/drawings-service/db/import.sql
     python app.py
   SHELL
 end

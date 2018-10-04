@@ -99,3 +99,40 @@ def create_interpretation(drawing_id, user_id, text):
 
     except Exception, e:
         raise e
+
+def get_user_by_username(username):
+    try:
+        get_query = """
+            SELECT id, username FROM user
+            WHERE username = %s"""
+        cursor.execute(get_query, username)
+        response = cursor.fetchone()
+
+        if not response:
+            return None
+
+        user = {
+            'id': response[0],
+            'username': response[1]
+        }
+
+        return user
+
+    except Exception, e:
+        raise e
+
+
+def create_user_by_username(username):
+    try:
+        query = """
+                    INSERT INTO user (username)
+                    VALUES (%s)
+                """
+
+        cursor.execute(query, username)
+        conn.commit()
+        return get_user_by_username(username)
+
+    except Exception, e:
+        raise e
+

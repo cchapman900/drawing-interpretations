@@ -9,12 +9,29 @@ This service enables users to view drawings and submit interpretations
 - MySQL
 
 ## Initial Setup
-- Python virtual environment setup
+- ####Python virtual environment setup
 ```
 virtualenv venv
 source venv
 pip install -r requirements.txt
 ```
+- ####MySQL setup
+This service expects a database called `drawings` with three tables with the following structure:
+
+    - `user`
+        - `id`
+        - `username`
+    - `drawings`
+        - `id`
+        - `image_url`
+        - `description`
+    - `interpretations`
+        - `id`
+        - `user_id`
+        - `drawing_id`
+        - `text`
+        
+An import file can be found at `/db/import.sql`. The configuration for connecting to the database can be found at `/config.py`.
 
 ## Running the service
 

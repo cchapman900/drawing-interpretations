@@ -28,13 +28,16 @@ def create_interpretation(drawing_id):
     payload = json.loads(request.data)
 
     try:
-        user_id = payload['user_id']
+        username = payload['username']
         text = payload['text']
     except Exception, e:
         return "Invalid request", 400
 
     try:
-        response = db.create_interpretation(drawing_id=drawing_id, user_id=user_id, text=text)
+        user = db.get_user_by_username(username)
+        if not user:
+            user = db.create_user_by_username(username)
+        response = db.create_interpretation(drawing_id=drawing_id, user_id=user['id'], text=text)
         return jsonify(response)
     except Exception, e:
         return repr(e), 409

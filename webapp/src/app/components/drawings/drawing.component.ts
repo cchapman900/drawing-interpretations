@@ -24,7 +24,7 @@ export class DrawingComponent implements OnInit {
   ) { }
 
   username = localStorage.getItem('username');
-  interpretationGroup = {};
+  interpretationGroup = [];
   interpretation = new Interpretation();
 
   ngOnInit() {
