@@ -57,7 +57,7 @@ export class DrawingComponent implements OnInit {
   formatNames(names: Array<string>, limit = 3 ) {
     const result = [];
     let additional = '';
-    if (names.length < limit) {
+    if (names.length <= limit) {
       limit = names.length;
     } else {
       additional = 'and ' + (names.length - limit) + ' others';
@@ -72,7 +72,7 @@ export class DrawingComponent implements OnInit {
   }
 
   onSubmit() {
-    this.interpretation.user_id = this.username;
+    this.interpretation.username = this.username;
     this.interpretation.drawing_id = this.drawing_id;
     this.drawingService.createInterpretation(this.interpretation)
       .subscribe(response => {

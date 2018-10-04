@@ -1,5 +1,5 @@
 export class Interpretation {
-  user_id: string;
+  username: string;
   drawing_id: number;
   text: string;
 }
