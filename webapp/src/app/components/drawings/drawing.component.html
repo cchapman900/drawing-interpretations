@@ -4,6 +4,21 @@
       <img [src]="drawing?.image_url"/>
     </div>
     <div class="col-md-8">
+      <h4>Interpretations</h4>
+      <ul>
+        <li *ngFor="let interpretation of interpretationGroup">
+          <strong>{{interpretation[0]}}</strong>
+          <span (click)="showExtendedNames = !showExtendedNames" [hidden]="showExtendedNames">
+            - {{formatNames(interpretation[1])}} <span class="small">v</span>
+          </span>
+          <ul (click)="showExtendedNames = !showExtendedNames"  [hidden]="!showExtendedNames">
+            <li *ngFor="let username of interpretation[1]">
+              {{username}}
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <hr/>
       <h4>Submit an interpretation</h4>
       <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
         <div class="form-group">

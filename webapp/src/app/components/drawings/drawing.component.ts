@@ -14,6 +14,8 @@ export class DrawingComponent implements OnInit {
   drawing_id: number;
   drawing: Drawing;
 
+  showExtendedNames = false;
+
   constructor(
     private drawingService: DrawingService,
     private route: ActivatedRoute,
@@ -22,6 +24,7 @@ export class DrawingComponent implements OnInit {
   ) { }
 
   username = localStorage.getItem('username');
+  interpretationGroup = {};
   interpretation = new Interpretation();
 
   ngOnInit() {
@@ -31,9 +34,41 @@ export class DrawingComponent implements OnInit {
         this.drawingService.getDrawing(this.drawing_id)
           .subscribe(drawing => {
             this.drawing = drawing;
+            this.interpretationGroup = this.getInterpretationGroup(this.drawing.interpretations);
           });
       }
     });
+  }
+
+  getInterpretationGroup(drawingInterpretations) {
+    // interpretation is {text: 'some interpretation', username: 'some username'}
+    const grouping = drawingInterpretations.reduce(function (r, a) {
+      r[a.text] = r[a.text] || [];
+      r[a.text].push(a.username);
+      return r;
+    }, Object.create(null));
+    const result = Object.keys(grouping).map(function(key) {
+      return [key, grouping[key]];
+    });
+
+    return result;
+  };
+
+  formatNames(names: Array<string>, limit = 3 ) {
+    const result = [];
+    let additional = '';
+    if (names.length < limit) {
+      limit = names.length;
+    } else {
+      additional = 'and ' + (names.length - limit) + ' others';
+    }
+    for (let i = 0; i < limit; i++) {
+      result.push(names[i]);
+    }
+    if (additional !== '') {
+      result.push(additional);
+    }
+    return result.join(', ');
   }
 
   onSubmit() {
